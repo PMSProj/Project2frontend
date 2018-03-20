@@ -36,7 +36,7 @@ app.controller('JobCtrl',function($scope,$rootScope,$location,JobService,$routeP
 			$scope.job=response.data
 		},function(response){
 			$rootScope.error=response.data
-			if(response.status==401)
+			if(response.status==401)//not logged in
 				$location.path('/login')
 		})
 	}

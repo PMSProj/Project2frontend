@@ -4,17 +4,20 @@
  */
 var app = angular.module('app', [ 'ngRoute', 'ngCookies' ])
 app.config(function($routeProvider) {
-	$routeProvider.when('/register', {
+	$routeProvider
+	.when('/register', {
 		templateUrl : 'views/registrationform.html',
 		controller : 'UserController'
 
 	}).when('/login', {
 		templateUrl : 'views/login.html',
 		controller : 'UserController'
-	}).when('/edituserprofile', {
+	})
+	.when('/edituserprofile', {
 		templateUrl : 'views/edituserprofile.html',
 		controller : 'UserController'
-	}).when('/addjob', {
+	})
+	.when('/addjob', {
 		templateUrl : 'views/jobForm.html',
 		controller : 'JobCtrl'
 	})
@@ -28,6 +31,11 @@ app.config(function($routeProvider) {
 		controller : 'JobCtrl'
 	})
 	
+	.when('/addblog',{
+		templateUrl:'views/blogform.html',
+		controller:'BlogCtrl'
+	})
+	
 	.otherwise({
 		templateUrl : 'views/home.html'
 	})
@@ -37,7 +45,8 @@ app.run(function($location, $rootScope, $cookieStore, UserService) {
 		$rootScope.loggedInUser = $cookieStore.get('currentuser')
 	$rootScope.logout = function() {
 		console.log('entering logout')
-		UserService.logout().then(function(response) {
+		UserService.logout().then(
+				function(response) {
 			delete $rootScope.loggedInUser;
 			$cookieStore.remove('currentuser')
 			$rootScope.message = "Successfully Logout.."
