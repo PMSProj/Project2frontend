@@ -13,13 +13,11 @@ app.controller('UserController', function($scope, $rootScope,$location, UserServ
 			})
 	}
 	$scope.registerUser = function() {
-		// alert('entering usercontroller registerUser function in
-		// frontend'+user)
-		//console.log('entering usercontroller registerUser function in frontend'+ user)
-		UserService.registerUser($scope.user).then
-		(function(response) {
-			alert('Registered Successfully....please login again...')
-			$location.path('/home')
+	
+		UserService.registerUser($scope.user).then(
+		function(response) {
+			alert('Registered Successfully....')
+			$location.path('/login')
 		}, function(response) {
 			$scope.error=response.data
 		})
@@ -27,8 +25,7 @@ app.controller('UserController', function($scope, $rootScope,$location, UserServ
 	}
 $scope.login=function(user)
 {
-	//console.log('UserController ->login')
-	//console.log(user)
+	
 	UserService.login(user).then(function(response)
     {
 		console.log('success')
@@ -37,15 +34,14 @@ $scope.login=function(user)
 		$location.path('/home')
     },function(response){
     	console.log('error')
-    	console.log(response.data)
+    	//console.log(response.data)
     	$scope.error=response.data
     	$location.path('/login')
          
 			})
 
 }
-//Statement  which will get executed automatically when gets loaded
-//Controller to view 
+
 if($rootScope.loggedInUser!=undefined){
 UserService.getUser().then(
 		function(response){

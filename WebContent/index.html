@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap ,Angular Js ,Angular Route js -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -9,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <link href="resources/css/login.css" rel="stylesheet"> 
+   <link href="resources/css/notification.css" rel="stylesheet"> 
  <title>WEBAPP</title>
 </head>
 <body ng-app="app">
@@ -26,18 +28,37 @@
   </div>
   <div class="collapse navbar-collapse" id="collapse-exapmle">
   <ul class="nav navbar-nav">
-  <li><a href="#!/register" ng-show="loggedInUser.firstname==undefined">Sign Up</a></li>
-  <li><a href="#!/edituserprofile" ng-show="loggedInUser.firstname!=undefined">Edit</a></li>
-  <li><a href="#!/login" ng-show="loggedInUser.firstname==undefined">Sign In</a></li>
-  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Job<b class="caret"></b></a>
+  <li><a href="#!/register" ng-show="loggedInUser.firstname==undefined">Sign Up<span class="glyphicon glyphicon-user"></span></a></li>
+  <li><a href="#!/edituserprofile" ng-show="loggedInUser.firstname!=undefined">Edit<span class="glyphicon glyphicon-user"></span></a></li>
+  <li><a href="#!/login" ng-show="loggedInUser.firstname==undefined">Sign In<span class="glyphicon glyphicon-log-in"></span></a></li>
+  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Job<span class="caret"></span></a>
   <ul class="dropdown-menu">
   <li><a href="#!/addjob"ng-show="loggedInUser.role=='ADMIN'">AddJob</a></li>
   <li><a href="#!/alljobs">Get All Jobs</a></li>
   </ul></li>
-  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Blog<b class="caret"></b></a>
+  <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Blog<span class="caret"></span></a>
   <ul class="dropdown-menu">
   <li><a href="#!/addblog">Add Blog</a></li>
+  <li><a href="#!/blogsnotapproved" ng-show="loggedInUser.role=='ADMIN'">Blogs waiting for approval</a></li>
+  <li><a href="#!/blogsapproved">Blogs</a></li>
   </ul></li>
+  
+  <li class="dropdown">
+  <a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname">
+  <span class="glyphicon-glyphicon-globe">
+  <span class="rw-number-notification" ng-if="notificationCount>0">{{notificationCount}}</span>
+  </span>
+  </a>
+  <ul class="dropdown-menu">
+  <span class="dropdown-content">
+  <li ng-repeat="notification in notifications">
+ <a href="#!/getnotification/{{notification.id}}">Blog titled<b>{{notification.blogTitle}}</b>approval status is updated</a> 
+ <hr>
+ </li>
+  </span>
+  </ul>
+  </li>
+  
   <li><a href="#" ng-show="loggedInUser.firstname!=undefined">Welcome&nbsp;&nbsp;{{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
   <li><a href=""ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">Logout</a></li>
 
@@ -59,5 +80,7 @@
 <script type="text/javascript" src="controller/jobcontroller.js"></script>
 <script type="text/javascript" src="controller/blogcontroller.js"></script>
 <script type="text/javascript" src="services/blogservice.js"></script>
-
+<script type="text/javascript" src="controller/blogdetailscontroller.js"></script>
+<script type="text/javascript" src="services/notificationservice.js"></script>
+<script type="text/javascript" src="controller/notificationcontroller.js"></script>
 </html>
