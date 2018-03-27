@@ -19,13 +19,11 @@ app.controller('NotificationCtrl',function($scope,$rootScope,$routeParams,$locat
 			
 	}
 	if(id!=undefined){
-		//two statements
-		//select * from notification where id=?
-		//update notification set viewed =1 where id=?
+		
 		
 		NotificationService.getNotification(id).then(
 			function(response){
-				console.log(response.data)
+//				console.log(response.data)
 				$scope.notification=response.data
 			},
 			function(response){

@@ -58,7 +58,7 @@ UserService.getUser().then(
 //View to Controller
 $scope.updateUser=function(user){
 	UserService.updateUser(user).then(function(response){
-	console.log(job.jobtitle)
+//	console.log(job.jobtitle)
 	alert('updated user profile successfully..')
 	$rootScope.loggedInUser=response.data
 		$cookieStore.put('loggedInUser',response.data)

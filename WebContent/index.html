@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Bootstrap ,Angular Js ,Angular Route js -->
+<link rel="icon" href="resources/favicon.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -43,9 +43,17 @@
   <li><a href="#!/blogsapproved">Blogs</a></li>
   </ul></li>
   
+    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname!=undefined">Friends<span class="caret"></span>
+  </a>
+   <ul class="dropdown-menu">
+  <li><a href="#!/suggestedusers">Suggested Users</a></li>
+   <li><a href="#!/pendingrequests">Pending Requests</a></li>
+  </ul>
+  </li>
+  
   <li class="dropdown">
   <a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname">
-  <span class="glyphicon-glyphicon-globe">
+  <span class="glyphicon glyphicon-globe">
   <span class="rw-number-notification" ng-if="notificationCount>0">{{notificationCount}}</span>
   </span>
   </a>
@@ -60,7 +68,14 @@
   </li>
   
   <li><a href="#" ng-show="loggedInUser.firstname!=undefined">Welcome&nbsp;&nbsp;{{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
-  <li><a href=""ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">Logout</a></li>
+  
+  <li><a href="#!/uploadprofilepic" ng-show="loggedInUser.firstname">
+  <img  src="http://localhost:8080/MiddleWare/getimage/{{loggedInUser.email}}" alt="Upload Profilepic" height="40px" width="40px" class="img-circle"/>
+  </a>
+  </li>
+ 
+  
+  <li><a href=""ng-click="logout()" ng-show="loggedInUser.firstname!=undefined"><span class="glyphicon glyphicon-log-out">Logout</span></a></li>
 
    </ul>
   </div>
@@ -83,4 +98,6 @@
 <script type="text/javascript" src="controller/blogdetailscontroller.js"></script>
 <script type="text/javascript" src="services/notificationservice.js"></script>
 <script type="text/javascript" src="controller/notificationcontroller.js"></script>
+<script type="text/javascript" src="services/friendservice.js"></script>
+<script type="text/javascript" src="controller/friendcontroller.js"></script>
 </html>
