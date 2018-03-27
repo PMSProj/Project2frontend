@@ -23,5 +23,9 @@ app.factory('FriendService',function($http){
 		return $http.put("http://localhost:8080/MiddleWare/deleterequest",request)
 	}
 	
+	friendService.getAllFriends=function(){
+		return $http.get("http://localhost:8080/MiddleWare/friends")
+	}
+	
 	return friendService;
 })
