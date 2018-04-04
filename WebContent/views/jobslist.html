@@ -1,20 +1,21 @@
 <div class="container">
-Search<input type="text" ng-model="searchTxt">
-	<div class="row" style="width: 200px">
-		<div ng-repeat="job in jobs | filter:searchTxt | orderBy:'postedOn'">
+	<b>Search</b><input type="text" ng-model="searchTxt"><br>
+	<br>
+	<div class="row" style="width: 600px">
+		<div ng-repeat="job in jobs | filter:searchTxt | orderBy:'-postedOn'">
 			<!-- List<Job> response.data -->
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<a href="#!/getjob/{{job.id}}">{{job.jobtitle}}</a>
 				</div>
-			
-			<div class="panel-body">
-				<b>Posted On</b>{{job.postedOn | date:'medium'}}<br> <b>Skills
-					Required</b>{{job.skillsRequired}}
+
+				<div class="panel-body">
+					<b>Posted On</b> {{job.postedOn | date:'medium'}}<br>
+					 <b>Skills Required</b>{{job.skillsRequired}}
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 

@@ -1,15 +1,19 @@
-<span style="color:red">{{error.message}}</span>
-<form>
-<div class="form-group">
-<label>Blog Title</label>
-<input type="text" ng-model="blog.blogTitle" class="form-control">
-</div>
-<div>
-<label>Enter blog Content</label>
-<textarea rows="5" cols="10" ng-model="blog.blogContent" class="form-control"></textarea>
-</div>
-<div>
-<input type="submit" value="Add Blog" ng-click="addBlog(blog)">
-</div>
 
+<span style="color: red">{{error.message}}</span>
+<!-- <div class="row" style="width: 600px"> -->
+<form>
+<div class="container bg-form">
+	<div class="form-group">
+		<label>Blog Title</label> <input type="text" ng-model="blog.blogTitle"
+			class="form-control">
+	</div>
+	<div>
+		<label>Enter blog Content</label>
+		<textarea rows="5" cols="10" ng-model="blog.blogContent"
+			class="form-control"></textarea>
+	</div>
+	
+		<input type="submit" value="Add Blog" ng-click="addBlog(blog)">
+	
+</div>
 </form>

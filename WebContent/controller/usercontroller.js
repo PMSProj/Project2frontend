@@ -33,7 +33,7 @@ $scope.login=function(user)
 		$cookieStore.put('currentuser',response.data)
 		$location.path('/home')
     },function(response){
-    	console.log('error')
+//    	console.log('error')
     	//console.log(response.data)
     	$scope.error=response.data
     	$location.path('/login')

@@ -18,7 +18,7 @@
 			<textarea rows="1" cols="10" ng-model="commentTxt"></textarea>
 			<button type="button" class="btn btn-primary"
 				ng-click="addComment(blog ,commentTxt)">PostComment</button>
-			<br> <a ng-click="onShowComments()">{{comments.length}}comments</a></br>
+			<br> <a ng-click="onShowComments()">{{comments.length}}comments</a>
 			<ul style="list-style: none;" ng-show="showComments">
 				<li ng-repeat="comment in comments | orderBy:'-commentedOn'">
 					{{comment.commentTxt}} &nbsp; <b>Commented By</b>{{comment.commentedBy.firstname}}

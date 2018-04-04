@@ -1,5 +1,6 @@
 {{error.message}}
-<form>
+<div id="edit-box">
+<form class="f2">
 <div class="form-group">
 Email Id<input type="email" ng-model="user.email" disabled class="form-control">
 </div>
@@ -24,3 +25,4 @@ Contact Number<input type="text" ng-model="user.contactnumber"  class="form-cont
 </div>
 <input type="submit" ng-click="updateUser(user)" value="Edit Profile">
 </form>
+</div>

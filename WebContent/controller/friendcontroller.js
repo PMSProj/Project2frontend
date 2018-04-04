@@ -14,7 +14,7 @@ app.controller('FriendCtrl', function($scope, $location, $rootScope,FriendServic
 				$location.path('/login')
 		})
 	}
-	
+	 
 	function getPendingRequests(){
 		FriendService.getPendingRequests().then(
 		function(response){

@@ -5,7 +5,7 @@
 		</div>
 		<div class="panel-body">
 		<span ng-if="pendingRequests.legth==0"><b>No pending requests</b></span>
-			<ul style="list-style: none;">
+			<ul style="list-style: none">
 					<li ng-repeat="request in pendingRequests">
 					<b>{{request.fromId.email}}</b><br>
 					<b>{{request.fromId.firstname}} &nbsp; {{request.fromId.lastname}}</b><br>

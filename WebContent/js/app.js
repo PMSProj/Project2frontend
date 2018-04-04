@@ -9,7 +9,8 @@ app.config(function($routeProvider) {
 		templateUrl : 'views/registrationform.html',
 		controller : 'UserController'
 
-	}).when('/login', {
+	})
+	.when('/login', {
 		templateUrl : 'views/login.html',
 		controller : 'UserController'
 	})
@@ -76,7 +77,7 @@ app.config(function($routeProvider) {
 		controller:'FriendCtrl'
 	})
 	
-	.when('pendingrequests',{
+	.when('/pendingrequests',{
 		templateUrl:'views/pendingrequests.html',
 		controller:'FriendCtrl'
 	})
@@ -86,12 +87,18 @@ app.config(function($routeProvider) {
 		controller:'FriendCtrl'
 	})
 	
+	.when('/chat',{
+		templateUrl:'views/chat.html',
+		controller:'ChatCtrl'
+	})
+	
+	
 	.otherwise({
 		templateUrl : 'views/home.html',
 		controller:'NotificationCtrl'
 	})
 })
-app.run(function($location, $rootScope, $cookieStore, UserService) {
+app.run(function($location, $rootScope, $cookieStore, UserService,NotificationService) {
 	if ($rootScope.loggedInUser == undefined)
 		$rootScope.loggedInUser = $cookieStore.get('currentuser')
 	$rootScope.logout = function() {
@@ -109,5 +116,19 @@ app.run(function($location, $rootScope, $cookieStore, UserService) {
 		})
 
 	}
-
+	function getNotificationsNotViewed(){
+		NotificationService.getNotificationsNotViewed().then(
+		function(response){
+			$rootScope.notifications=response.data
+			$rootScope.notificationCount=$rootScope.notifications.length
+		
+		},
+		function(response){
+			$rootScope.error=response.data
+			if(response.status==401)
+				$location.path('/login')
+		})
+		
+	}
+  getNotificationsNotViewed()
 })
